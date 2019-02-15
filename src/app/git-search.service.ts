@@ -2,42 +2,39 @@ import { Injectable } from '@angular/core';
 import { GitSearch } from './git-search';
 import { GitUsers } from './git-users';
 import { HttpClient } from '@angular/common/http';
-//import 'rxjs/add/operator/toPromise';
+import { Observable } from 'rxjs';
+import  { map, shareReplay, refCount } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GitSearchService {
-  cachedValues: Array<{
-    [query: string]: GitSearch
-  }> = [];
-
-  constructor(private http: HttpClient) {
-    
+  cachedValue: string;
+  search: Observable<GitSearch>;
+  /*cachedUsers: Array<{
+    [query: string]: GitUsers
+  }> = [];*/
+  constructor(private http: HttpClient) {    
    }
 
-  gitSearch = (query: string, page: string) => {
-    let promise = new Promise<GitSearch> ((resolve, reject) => {
-      if (this.cachedValues[query]) {
-        resolve(this.cachedValues[query])
-      }
-      else {
-        this.http.get('https://api.github.com/search/repositories?q=' + query + '&page=' + page)
-        .toPromise()
-        .then( (response) => {
-          resolve(response as GitSearch)
-        }, (error) => {
-          reject(error);
-        })
-      }
-    })
-    return promise;
+  gitSearch : Function = (query: string, page: string) : Observable<GitSearch> => {
+    if (!this.search) {
+      this.search = this.http.get<GitSearch>
+      ('https://api.github.com/search/repositories?q=' + query + '&page=' + page)
+      .pipe(shareReplay(1));
+      this.cachedValue = query;
+    }
+    else if (this.cachedValue !== query) {
+      this.search = null;
+      this.gitSearch(query);
+    }
+    return this.search;
   }
 
-  userSearch = (query: string) => {
+  /*gitUsers = (query: string) => {
     let promise = new Promise<GitUsers> ((resolve, reject) => {
-      if (this.cachedValues[query]) {
-        resolve(this.cachedValues[query])
+      if (this.cachedValue[query]) {
+        resolve(this.cachedValue[query])
       }
       else {
         this.http.get('https://api.github.com/search/users?q=' + query)
@@ -50,7 +47,7 @@ export class GitSearchService {
       }
     })
     return promise;
-  }
+  }*/
 }
 
 

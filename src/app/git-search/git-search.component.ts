@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GitSearchService } from '../git-search.service';
+import { UnifiedSearchService } from '../unified-search.service';
 import { GitSearch } from '../git-search';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { AdvancedSearchModel } from '../advanced-search-model';
@@ -24,7 +24,7 @@ export class GitSearchComponent implements OnInit {
   form: FormGroup;
   formControls = {};
 
-  constructor(private GitSearchService: GitSearchService,
+  constructor(private UnifiedSearchService: UnifiedSearchService,
               private route: ActivatedRoute,
               private router: Router ) { 
                 this.modelKeys.forEach( (key) => {
@@ -70,11 +70,11 @@ export class GitSearchComponent implements OnInit {
   }
 
   gitSearch = () => {
-    this.GitSearchService.gitSearch(this.searchQuery, this.page).then( (response)=> {
-      this.searchResults = response;
+    this.UnifiedSearchService.unifiedSearch(this.searchQuery).subscribe((response) => {
+      this.searchResults = response.repositories;
     }, (error) => {
       alert("Error: " + error.statusText)
-    })    
+    })          
   }
 
   nextPage = () => {

@@ -9,6 +9,8 @@ import { GitSearchComponent } from './git-search/git-search.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NoSpecialCharsDirective } from './no-special-chars.directive';
+import { GitCodeSearchService } from './git-code-search.service';
+import { UnifiedSearchService } from './unified-search.service';
 
 @NgModule({
   declarations: [
@@ -23,9 +25,9 @@ import { NoSpecialCharsDirective } from './no-special-chars.directive';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [GitSearchService],
+  providers: [GitSearchService, GitCodeSearchService, UnifiedSearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
