@@ -4,22 +4,17 @@
   <div *ngFor="let key of modelKeys" >
     {{key}}: <input placeholder="Enter {{key}} Here" formControlName="{{key}}" />
   </div>
+<!----  <div *ngIf="myForm.controls[key] && myForm.controls[key].invalid">
+    {{key}} is invalid
+  </div> -->
 <button type="submit" [disabled]="!form.valid">Submit</button>
 </form>
 
 <div *ngIf="searchResults; else elseBlock">
   <h3 class="total">Total Results: {{searchResults.total_count}}</h3>
   <ul class="list">
-  <li [ngStyle]="{'background-color' : (i%2 === 0) ? 'silver' : 'white'}" class="list_item" *ngFor="let result of searchResults.items; index as i;">
-    <a [href]="result.html_url">
-      <img class="avatar" [src]="result.owner.avatar_url" />
-      <h4 class="title">{{result.name}}
-        <small> by {{result.owner.login | uppercase}}</small>
-      </h4>
-    </a>
-    <p class="description"> {{result.description}} </p>
-    <p>Created On: {{result.created_at | date: 'fullDate' }} </p>    
-  </li>
+    <app-repository-display [searchResults]="searchResults.repositories" [favorites] = "favorites" (updateFavorites) = "handleFavorite($event)" *ngIf="searchResults.repositories"></app-repository-display>
+    <app-code-display [searchResults]="searchResults.code" [favorites] = "favorites" (updateFavorites) = "handleFavorite($event)" *ngIf="searchResults.code" ></app-code-display>
   </ul>
   <div>
     <button (click)="firstPage()">First</button>

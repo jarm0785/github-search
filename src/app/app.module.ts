@@ -11,6 +11,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { NoSpecialCharsDirective } from './no-special-chars.directive';
 import { GitCodeSearchService } from './git-code-search.service';
 import { UnifiedSearchService } from './unified-search.service';
+import { RepositoryDisplayComponent } from './repository-display/repository-display.component';
+import { CodeDisplayComponent } from './code-display/code-display.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { UnifiedSearchService } from './unified-search.service';
     GitSearchComponent,
     HomePageComponent,
     NotFoundComponent,
-    NoSpecialCharsDirective
+    NoSpecialCharsDirective,
+    RepositoryDisplayComponent,
+    CodeDisplayComponent
   ],
   imports: [
     BrowserModule,
