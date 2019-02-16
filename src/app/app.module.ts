@@ -13,6 +13,7 @@ import { GitCodeSearchService } from './git-code-search.service';
 import { UnifiedSearchService } from './unified-search.service';
 import { RepositoryDisplayComponent } from './repository-display/repository-display.component';
 import { CodeDisplayComponent } from './code-display/code-display.component';
+import { FadeDirective } from './fade.directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CodeDisplayComponent } from './code-display/code-display.component';
     NotFoundComponent,
     NoSpecialCharsDirective,
     RepositoryDisplayComponent,
-    CodeDisplayComponent
+    CodeDisplayComponent,
+    FadeDirective
   ],
   imports: [
     BrowserModule,
