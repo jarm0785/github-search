@@ -5,7 +5,7 @@
     list-style-type: none;
 }
 .list_item {
-    border:1px solid black;
+    border:none;
     height: 165px;
     margin-top: 20px;
     padding-top: 10px;

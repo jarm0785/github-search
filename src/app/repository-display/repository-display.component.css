@@ -1,6 +1,6 @@
 .list_item {
-    border:1px solid black;
-    height: 165px;
+    border:none;
+    height: 100%;
     margin-top: 20px;
     padding-top: 10px;
     padding-left: 10px;
@@ -12,15 +12,17 @@
 }
 .title {
     font-size:20px;
+    line-height: 14px;
 }
 .description {
-    font-size:18px;
+    font-size:14px;
+    text-align: center;
 }
 
 .favorite_icon {
     position: relative;
     float: right;
-    bottom: 95px;
+    bottom: 105px;
     font-size: 36px;
     cursor: pointer;
     color: #546E7A;

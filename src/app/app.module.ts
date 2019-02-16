@@ -14,6 +14,7 @@ import { UnifiedSearchService } from './unified-search.service';
 import { RepositoryDisplayComponent } from './repository-display/repository-display.component';
 import { CodeDisplayComponent } from './code-display/code-display.component';
 import { FadeDirective } from './fade.directive';
+import { FavoriteTextPipe } from './favorite-text.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { FadeDirective } from './fade.directive';
     NoSpecialCharsDirective,
     RepositoryDisplayComponent,
     CodeDisplayComponent,
-    FadeDirective
+    FadeDirective,
+    FavoriteTextPipe
   ],
   imports: [
     BrowserModule,

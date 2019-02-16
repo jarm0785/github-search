@@ -22,6 +22,7 @@ export class FadeDirective implements OnInit {
 
   @HostListener('mouseout') onMouseOut() {
     this.renderer.setStyle(this.el.nativeElement, 'opacity', '.8');
+    this.renderer.setStyle(this.el.nativeElement, 'box-shadow', 'none');
   }
 
 }
