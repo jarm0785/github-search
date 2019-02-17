@@ -84,7 +84,20 @@ export class GitSearchComponent implements OnInit {
   }
 
   handleFavorite = (id) => {
-    return this.favorites.push(id);
+    if (this.favorites.indexOf(id) === -1) {
+      //console.log('id added to favorites');
+      //console.log(this.favorites);
+      return this.favorites.push(id);
+    }
+    else if (this.favorites.indexOf(id) > -1) {
+      //console.log(`id: ${id}`);
+      for ( let i : number = 0; i < this.favorites.length; i++) {
+        if (this.favorites[i] === id) {
+          //console.log('id removed from favorites');          
+          return this.favorites.splice(i, 1);
+        }
+      }
+    }
   }
 
   nextPage = () => {

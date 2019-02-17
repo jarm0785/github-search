@@ -16,7 +16,7 @@ export class RepositoryDisplayComponent implements OnInit {
   }
 
   addFavorite = (item) => {
-    this.updateFavorites.emit(item.id)
+    this.updateFavorites.emit(item.id);    
   }
 
   checkFavorites = (item) => {
