@@ -4,6 +4,8 @@
     margin-top: 20px;
     padding-top: 10px;
     padding-left: 10px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 .avatar {
     width:150px;
@@ -13,6 +15,8 @@
 .title {
     font-size:20px;
     line-height: 14px;
+    display: inline-block;
+    text-align: center;
 }
 .description {
     font-size:14px;
@@ -22,10 +26,10 @@
 .favorite_icon {
     position: relative;
     float: right;
-    bottom: 105px;
+    bottom: 10px;
     font-size: 36px;
     cursor: pointer;
-    color: #546E7A;
+    color: #F57F17;
 }
 
 .favorited {

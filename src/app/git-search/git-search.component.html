@@ -1,18 +1,25 @@
-<h3> {{title}} - {{displayQuery}} </h3>
+<h2 class="mat-h2 mat-title"> {{title}} - {{displayQuery}} </h2>
+<div class="container">
+  <mat-card tab-index="0">
+    <form class="form" (ngSubmit)="sendQuery()" [formGroup]="form" >
+      <div *ngFor="let key of modelKeys">        
+          <mat-form-field class="form-full-width">
+            <input matInput placeholder="Enter {{key==='q'? 'keywords' : key}} Here" formControlName="{{key}}" />
+          </mat-form-field>
+      </div>
+    
+    <!----  <div *ngIf="myForm.controls[key] && myForm.controls[key].invalid">
+        {{key}} is invalid
+      </div> -->
+    <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Submit</button>
+    </form>
+  </mat-card>
+</div>
 
-<form (ngSubmit)="sendQuery()" [formGroup]="form" >
-  <div *ngFor="let key of modelKeys" >
-    {{key}}: <input placeholder="Enter {{key}} Here" formControlName="{{key}}" />
-  </div>
-<!----  <div *ngIf="myForm.controls[key] && myForm.controls[key].invalid">
-    {{key}} is invalid
-  </div> -->
-<button type="submit" [disabled]="!form.valid">Submit</button>
-</form>
-
-<div *ngIf="searchResults; else elseBlock">
-  <h3 class="total">Total Results: {{searchResults.total_count}}</h3>
-  <ul class="list">    
+<div *ngIf="searchResults; else elseBlock" class="container">
+  <h3 class="mat-h3 mat-subheading-2 total">Total Results: {{searchResults.total_count}}</h3>
+  <h4 class="mat-h4 mat-subheading-1" style="max-width: 800px; text-align: left">Github Repositories Results:</h4>
+  <ul class="list">        
     <app-repository-display
      [searchResults]="searchResults.repositories" 
      [favorites] = "favorites" 
@@ -20,7 +27,10 @@
      *ngIf="searchResults.repositories" 
      >
     </app-repository-display>
+  </ul>
 
+  <h4 class="mat-h4 mat-subheading-1" style="max-width: 800px; text-align: left">Github Code Results:</h4>
+  <ul class="list">
     <app-code-display
      [searchResults]="searchResults.code" 
      [favorites] = "favorites" 
@@ -29,6 +39,7 @@
      > 
     </app-code-display>
   </ul>
+  
   <div>
     <button (click)="firstPage()">First</button>
     <button (click)="prevPage()" >Prev</button>
@@ -36,4 +47,4 @@
     <button (click)="lastPage()">Last</button>
   </div>
 </div>
-<ng-template #elseBlock>Loading....</ng-template>
+<ng-template #elseBlock>Loading Results....</ng-template>

@@ -15,6 +15,11 @@ import { RepositoryDisplayComponent } from './repository-display/repository-disp
 import { CodeDisplayComponent } from './code-display/code-display.component';
 import { FadeDirective } from './fade.directive';
 import { FavoriteTextPipe } from './favorite-text.pipe';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -34,6 +39,11 @@ import { FavoriteTextPipe } from './favorite-text.pipe';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule
   ],
   providers: [GitSearchService, GitCodeSearchService, UnifiedSearchService],
   bootstrap: [AppComponent]
